@@ -14,7 +14,7 @@ int main(void)
 {
 
 
-    // 1. ½«´ÅÅÌÎÄ¼şÖĞµÄjson×Ö·û´®¶Áµ½´ÅÅÌÎÄ¼ş
+    // 1. å°†ç£ç›˜æ–‡ä»¶ä¸­çš„jsonå­—ç¬¦ä¸²è¯»åˆ°ç£ç›˜æ–‡ä»¶
     string FileName;
     string FileName_0 = "E:\\MOJANG_NMSL\\recipes1\\X (";
     string NameEnd = ").json";
@@ -22,20 +22,20 @@ int main(void)
     char Nsub[1001];
 
 
-    // 2.kmÄÔÍ¼Ğ´Èë 
-    Value Root;         //Root  ×î¸ß (obj)
-    Value rootObj;      //rootObj  objÄÚµÄ ¡°root¡± {...}    
-    Value children;     //children  Êı×é
-    Value Data;         //Data  ¶ÔÏó
-    Value Data_up;      //Data_up  ·â×°ºóÓÃÓÚ²åÈëchildrenµÄ¶ÔÏó
-    Value res;          //res  ´æ·Å²ÄÁÏÊı (Array)
+    // 2.kmè„‘å›¾å†™å…¥ 
+    Value Root;         //Root  æœ€é«˜ (obj)
+    Value rootObj;      //rootObj  objå†…çš„ â€œrootâ€ {...}    
+    Value children;     //children  æ•°ç»„
+    Value Data;         //Data  å¯¹è±¡
+    Value Data_up;      //Data_up  å°è£…åç”¨äºæ’å…¥childrençš„å¯¹è±¡
+    Value res;          //res  å­˜æ”¾ææ–™æ•° (Array)
     Value DataAndChildren_itemUP;
     Value Data_itemUP;
     Value RootChildren;
     Data["created"] = 123456789;
     Data["id"] = "cj0hpwofp140";
     Data["text"] = "Item_All";
-        Data_up["data"] = Data;     //¶¥²ã·â×°µ½ ¡°data¡± {...} --> ÓÃÀ´·Åµ½childrenÀï
+        Data_up["data"] = Data;     //é¡¶å±‚å°è£…åˆ° â€œdataâ€ {...} --> ç”¨æ¥æ”¾åˆ°childrené‡Œ
 
 
         //children.append(Data_up);
@@ -68,15 +68,15 @@ int main(void)
         FileName = FileName_0 + Nsub + NameEnd;
 
         cout << "_________________________________________________________________________" << endl;
-        ifstream ifs(FileName);     // 2. ·´ĞòÁĞ»¯ -> value¶ÔÏó r
+        ifstream ifs(FileName);     // 2. ååºåˆ—åŒ– -> valueå¯¹è±¡ r
         Value root;
         Reader r;
-        r.parse(ifs, root);     // 3. ´Óvalue¶ÔÏóÖĞ½«Êı¾İÒÀ´Î¶Á³ö
-        Value::Members keys = root.getMemberNames();    //root £º×ÜµÄobj      keys £º×ÜobjµÄËùÓĞkey
+        r.parse(ifs, root);     // 3. ä»valueå¯¹è±¡ä¸­å°†æ•°æ®ä¾æ¬¡è¯»å‡º
+        Value::Members keys = root.getMemberNames();    //root ï¼šæ€»çš„obj      keys ï¼šæ€»objçš„æ‰€æœ‰key
         unsigned flag = 1;
-        string Lab = keys.at(flag);     //Lab £º×ÜobjµÄµÚflag¸ökey  £¨¹²2¸ö£©
-        Value sub = root[keys[1]];      //sub £ºÃèÊöobjµÄÄÚÈİ£¬ĞÂobj
-        Value::Members ssub = sub.getMemberNames();     //ssub £ºĞÂobjµÄËùÓĞkey 
+        string Lab = keys.at(flag);     //Lab ï¼šæ€»objçš„ç¬¬flagä¸ªkey  ï¼ˆå…±2ä¸ªï¼‰
+        Value sub = root[keys[1]];      //sub ï¼šæè¿°objçš„å†…å®¹ï¼Œæ–°obj
+        Value::Members ssub = sub.getMemberNames();     //ssub ï¼šæ–°objçš„æ‰€æœ‰key 
         for (unsigned Flag_0 = 0; Flag_0 < ssub.size(); ++Flag_0)
             if (ssub.at(Flag_0) == "pattern")
             {
@@ -113,7 +113,7 @@ int main(void)
             if (ssub.at(Flag_0) == "pattern")
             {
                 Value item = sub[ssub[Flag_0]];
-                //item´æµÄÊÇºÏ³É±í£¨Î´¸ÄÃû£©
+                //itemå­˜çš„æ˜¯åˆæˆè¡¨ï¼ˆæœªæ”¹åï¼‰
                 for (unsigned Flag_1 = 0; Flag_1 < item.size(); ++Flag_1)
                 {
                     string SubStr = item[Flag_1].asString();
@@ -126,7 +126,7 @@ int main(void)
             }
         }
 
-        //map1£ººÏ³ÉÇåµ¥£¬map2£º±êÇ©±í
+        //map1ï¼šåˆæˆæ¸…å•ï¼Œmap2ï¼šæ ‡ç­¾è¡¨
         int x;
         if (ctrl)
         {
@@ -168,7 +168,7 @@ int main(void)
             printf("NOT Craftable!! \n");
         }
 
-        //Ğ´Èë
+        //å†™å…¥
         Data_itemUP["created"] = 123456789;
         Data_itemUP["id"] = "cj0hpwofp140";
         Data_itemUP["text"] = name;
@@ -178,12 +178,12 @@ int main(void)
         for (map<string, int>::iterator it_write = mapE.begin(); it_write != mapE.end(); ++it_write)
         {
             string materials = it_write->first;
-            char num[1001];
+            char num_str[1001];
             int num_int = it_write->second;
-            _itoa_s(num_int, num, 10);
+            _itoa_s(num_int, num_str, 10);
 
             res.clear();
-            res.append(num);
+            res.append(num_str);
 
             Data["created"] = 123456789;
             Data["id"] = "cj0hpwofp140";
