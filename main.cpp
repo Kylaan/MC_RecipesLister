@@ -1,6 +1,7 @@
 #include <iostream>
 #include <D:/MyPrograms/jsoncpp/include/json/json.h>
 #include <fstream>
+#include <cstring>
 #include <map>
 
 using namespace Json;
@@ -9,6 +10,17 @@ using namespace std;
 
 void changeMap(map<string, int>& mymap, string key, int value) {
 	mymap[key] = value;
+}
+
+template <size_t size>
+void itoa(int value, char (&buffer)[size]) {
+	buffer[size - 1] = '\0';
+	char* p = buffer + (size - 2);
+	
+	do {
+		*(p--) = (char)('0' + value%10);
+	} while(value /= 10);
+	memmove(buffer, ++p, size + buffer - p);
 }
 
 int main(void) {
@@ -54,7 +66,7 @@ int main(void) {
 		map<string, int> mapE;
 		string name;
 		string table[3][3] = {" ", " ", " ", " ", " ", " ", " ", " ", " "};
-		_itoa_s(Nname, Nsub, 10);
+		itoa(Nname, Nsub, 10);
 		FileName = FileName_0 + Nsub + NameEnd;
 		
 		cout << "_________________________________________________________________________" << endl;
